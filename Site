@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Willian Roger Santos — Design Gráfico &amp; Audiovisual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #EEEDE7;
+    --paper-2: #E6E4DB;
+    --ink: #16140F;
+    --ink-soft: #3A3730;
+    --muted: #746F62;
+    --cobalt: #EFB300;
+    --cobalt-deep: #8A6100;
+    --tally: #C0392B;
+    --card: #FBFAF7;
+    --line: rgba(20,18,12,0.14);
+    --bar-1:#EFB300; --bar-2:#C0392B; --bar-3:#16140F; --bar-4:#0FA36B; --bar-5:#8A6100;
+
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: inherit; }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #131210;
+      --paper-2: #1A1815;
+      --ink: #F2EFE7;
+      --ink-soft: #D8D3C7;
+      --muted: #9B9587;
+      --card: #1D1B17;
+      --line: rgba(240,238,230,0.14);
+      --cobalt-deep: #F0C445;
+      --tally: #E0574A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131210; --paper-2: #1A1815; --ink: #F2EFE7; --ink-soft: #D8D3C7;
+    --muted: #9B9587; --card: #1D1B17; --line: rgba(240,238,230,0.14);
+    --cobalt-deep: #F0C445; --tally: #E0574A;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Archivo', 'Arial Narrow', sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .mono {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  a { color: var(--cobalt-deep); }
+  :root[data-theme="dark"] a, @media (prefers-color-scheme: dark) { }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--cobalt);
+    outline-offset: 3px;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 56px);
+  }
+
+  /* ---------- NAV ---------- */
+  header.site {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px clamp(20px, 5vw, 56px);
+  }
+  .nav .mark {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav .mark svg { flex: none; }
+  .nav nav {
+    display: flex;
+    gap: clamp(14px, 3vw, 28px);
+    align-items: center;
+  }
+  .nav nav a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .nav nav a:hover { color: var(--cobalt-deep); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .pill::before {
+    content: "";
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--tally);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--tally) 20%, transparent);
+  }
+  .nav-links-mobile-hide { display: flex; }
+  @media (max-width: 620px) {
+    .nav-links-mobile-hide { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: clamp(48px, 9vw, 96px) 0 clamp(28px, 6vw, 48px);
+    position: relative;
+  }
+  .regmark {
+    position: absolute;
+    width: 34px; height: 34px;
+    opacity: 0.55;
+  }
+  /* ---------- selo (hanko) + rótulo vertical ---------- */
+  .hanko {
+    position: absolute;
+    width: 46px; height: 46px;
+    transform: rotate(-7deg);
+  }
+  .vertical-label {
+    position: absolute;
+    top: 74px;
+    right: clamp(20px, 5vw, 56px);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    writing-mode: vertical-rl;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .vertical-label::before {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 64px;
+    background: var(--line);
+  }
+  @media (max-width: 720px) { .vertical-label { display: none; } }
+  .seigaiha {
+    height: 20px;
+    background-image:
+      radial-gradient(circle at 0 20px, transparent 9px, var(--tally) 9px, var(--tally) 10px, transparent 10px),
+      radial-gradient(circle at 20px 20px, transparent 9px, var(--tally) 9px, var(--tally) 10px, transparent 10px);
+    background-size: 20px 20px;
+    background-repeat: repeat-x;
+    opacity: 0.45;
+  }
+  .hero .kicker {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(2.6rem, 8vw, 5.4rem);
+    line-height: 0.98;
+    max-width: 14ch;
+  }
+  .hero .role {
+    margin-top: 20px;
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+    color: var(--ink-soft);
+    max-width: 44ch;
+  }
+  .hero-actions {
+    margin-top: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .btn {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn.primary {
+    background: var(--cobalt);
+    color: #F5F5FF;
+  }
+  .btn.primary:hover { background: var(--cobalt-deep); }
+  .btn.ghost {
+    border-color: var(--line);
+    color: var(--ink);
+    background: transparent;
+  }
+  .btn.ghost:hover { border-color: var(--ink); }
+
+  .colorbars {
+    margin-top: clamp(40px, 8vw, 72px);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 14px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .colorbars span:nth-child(1) { background: var(--bar-1); }
+  .colorbars span:nth-child(2) { background: var(--bar-2); }
+  .colorbars span:nth-child(3) { background: var(--bar-3); }
+  .colorbars span:nth-child(4) { background: var(--bar-4); }
+  .colorbars span:nth-child(5) { background: var(--bar-5); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section { padding: clamp(48px, 8vw, 88px) 0; }
+  section + section { border-top: 1px solid var(--line); }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: clamp(28px, 5vw, 44px);
+  }
+  .section-head .mono { white-space: nowrap; }
+  .section-head h2 { font-size: clamp(1.6rem, 4vw, 2.4rem); }
+
+  /* ---------- SOBRE ---------- */
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: clamp(24px, 5vw, 56px);
+    align-items: start;
+  }
+  .sobre-grid p { font-size: clamp(1.02rem, 1.6vw, 1.15rem); max-width: 62ch; }
+  .sobre-grid p + p { margin-top: 1em; }
+  .toolstack {
+    border-left: 2px solid var(--cobalt);
+    padding-left: 18px;
+  }
+  .toolstack .mono { margin-bottom: 10px; }
+  .toolstack ul { list-style: none; margin: 0; padding: 0; font-family: 'Archivo', sans-serif; font-weight: 700; }
+  .toolstack li { padding: 5px 0; color: var(--ink-soft); }
+  @media (max-width: 760px) { .sobre-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- ÁREAS ---------- */
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .area-card {
+    background: var(--card);
+    padding: clamp(22px, 4vw, 32px);
+  }
+  .area-card .mono { margin-bottom: 22px; }
+  .area-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+  .area-card p { color: var(--ink-soft); font-size: 0.98rem; margin: 0; }
+  @media (max-width: 760px) { .areas-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- PROJETOS ---------- */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(20px, 3vw, 28px);
+  }
+  .proj-card {
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background: var(--card);
+  }
+  .proj-thumb {
+    aspect-ratio: 16/10;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+  }
+  .proj-thumb .corner {
+    position: absolute;
+    width: 16px; height: 16px;
+    opacity: 0.7;
+  }
+  .proj-thumb .corner.tl { top: 10px; left: 10px; border-left: 2px solid #fff; border-top: 2px solid #fff; }
+  .proj-thumb .corner.br { bottom: 10px; right: 10px; border-right: 2px solid #fff; border-bottom: 2px solid #fff; }
+  .proj-thumb span.tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: #fff;
+    background: rgba(0,0,0,0.28);
+    padding: 4px 8px;
+    border-radius: 2px;
+  }
+  .proj-body { padding: 18px 20px 22px; }
+  .proj-body h3 { font-size: 1.08rem; margin-bottom: 6px; }
+  .proj-body .mono { margin-top: 8px; }
+  @media (max-width: 700px) { .proj-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- EXPERIÊNCIA (timeline) ---------- */
+  .timeline { border-top: 1px solid var(--line); }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .tl-row .code {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--cobalt-deep);
+    padding-top: 3px;
+  }
+  .tl-row h3 { font-size: 1.12rem; margin-bottom: 4px; }
+  .tl-row .role-line { color: var(--ink-soft); font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 0.92rem; margin-bottom: 6px; }
+  .tl-row p { margin: 0; color: var(--muted); font-size: 0.96rem; max-width: 60ch; }
+  @media (max-width: 600px) {
+    .tl-row { grid-template-columns: 1fr; }
+    .tl-row .code { padding-top: 0; }
+  }
+
+  /* ---------- CONTATO ---------- */
+  .contato {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(24px, 5vw, 56px);
+    align-items: end;
+  }
+  .contato h2 { font-size: clamp(1.9rem, 5vw, 3rem); max-width: 16ch; }
+  .contato .lede { color: var(--ink-soft); margin-top: 16px; max-width: 48ch; }
+  .contact-list { list-style: none; margin: 24px 0 0; padding: 0; }
+  .contact-list li { border-top: 1px solid var(--line); padding: 14px 0; display: flex; justify-content: space-between; gap: 12px; }
+  .contact-list li:last-child { border-bottom: 1px solid var(--line); }
+  .contact-list .k { font-family: 'Archivo', sans-serif; font-weight: 700; color: var(--muted); font-size: 0.88rem; }
+  .contact-list a { text-decoration: none; font-family: 'Archivo', sans-serif; font-weight: 700; color: var(--ink); }
+  .contact-list a:hover { color: var(--cobalt-deep); }
+  @media (max-width: 760px) { .contato { grid-template-columns: 1fr; } }
+
+  footer {
+    padding: 26px clamp(20px, 5vw, 56px) calc(26px + env(safe-area-inset-bottom, 0px));
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  footer .mono { color: var(--muted); }
+
+  ::selection { background: var(--cobalt); color: #fff; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="nav">
+    <a class="mark" href="#top">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 1V5M10 15V19M1 10H5M15 10H19" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="10" cy="10" r="3.4" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+      Willian Roger Santos
+    </a>
+    <nav class="nav-links-mobile-hide">
+      <a href="#sobre">Sobre</a>
+      <a href="#areas">Áreas</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#experiencia">Experiência</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <span class="pill">Disponível para novos projetos</span>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <svg class="hanko" style="top: 6px; right: clamp(20px,5vw,56px);" viewBox="0 0 46 46" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="23" cy="23" r="21" fill="none" stroke="var(--tally)" stroke-width="2.4"/>
+      <text x="23" y="20" text-anchor="middle" font-family="'Archivo', sans-serif" font-weight="900" font-size="13" fill="var(--tally)">W</text>
+      <text x="23" y="34" text-anchor="middle" font-family="'Archivo', sans-serif" font-weight="900" font-size="13" fill="var(--tally)">R</text>
+    </svg>
+    <p class="vertical-label">PORTFÓLIO · 2026</p>
+    <p class="kicker">Design gráfico &amp; audiovisual — São Paulo, SP</p>
+    <h1>Willian Roger Santos</h1>
+    <p class="role">Identidade visual, edição de vídeo e artes para redes sociais, do roteiro ao arquivo final de entrega.</p>
+    <div class="hero-actions">
+      <a class="btn primary" href="#projetos">Ver projetos</a>
+      <a class="btn ghost" href="#contato">Falar comigo</a>
+    </div>
+    <div class="colorbars" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+
+  <section id="sobre">
+    <div class="wrap sobre-grid">
+      <div>
+        <p class="mono" style="margin-bottom: 14px;">Sobre</p>
+        <p>Sou formado em Tecnologia em Design Gráfico pela UTFPR e trabalho há alguns anos entre identidade visual, edição audiovisual e conteúdo para redes sociais. Passei por estágios na Landfor Design/Olimpo e na EDUTFPR, e atuei como assistente de áudio e vídeo na UNIDOMBOSCO, onde apoiei captação e edição de material em eventos e entrevistas.</p>
+        <p>Gosto de projetos que passam pelo processo inteiro — do briefing e roteiro até a entrega final — e estou migrando parte da minha prática para UI/UX, com foco em interfaces para jogos.</p>
+      </div>
+      <div class="toolstack">
+        <p class="mono">Ferramentas</p>
+        <ul>
+          <li>Adobe Photoshop</li>
+          <li>Adobe Illustrator</li>
+          <li>Adobe Premiere</li>
+          <li>Adobe After Effects</li>
+          <li>Figma</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="areas">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="mono">Áreas</p>
+        <h2>Onde eu ajudo</h2>
+      </div>
+      <div class="areas-grid">
+        <div class="area-card">
+          <p class="mono">01</p>
+          <h3>Branding</h3>
+          <p>Identidade visual, aplicações de marca e materiais impressos e digitais consistentes de ponta a ponta.</p>
+        </div>
+        <div class="area-card">
+          <p class="mono">02</p>
+          <h3>Audiovisual</h3>
+          <p>Captação e edição de vídeo institucional, cobertura de eventos e entrevistas, do bruto ao corte final.</p>
+        </div>
+        <div class="area-card">
+          <p class="mono">03</p>
+          <h3>Redes sociais</h3>
+          <p>Artes e peças para feed, stories e campanhas, adaptadas ao formato e ao ritmo de cada plataforma.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="mono">Projetos</p>
+        <h2>Trabalhos selecionados</h2>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card">
+          <a href="https://www.behance.net/gallery/161474071/Trabalhos-para-a-agencia-OLIMPO-LTDA" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <div class="proj-thumb" style="background: linear-gradient(135deg, #EFB300, #16140F);">
+              <span class="corner tl"></span><span class="corner br"></span>
+              <span class="tag">Branding</span>
+            </div>
+            <div class="proj-body">
+              <h3>Trabalhos para a agência OLIMPO LTDA.</h3>
+              <p class="mono">Ver projeto no Behance ↗</p>
+            </div>
+          </a>
+        </div>
+        <div class="proj-card">
+          <a href="https://www.behance.net/gallery/253764757/Edicoes-de-Reels-Comerciais" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <div class="proj-thumb" style="background: linear-gradient(135deg, #C0392B, #16140F);">
+              <span class="corner tl"></span><span class="corner br"></span>
+              <span class="tag">Audiovisual</span>
+            </div>
+            <div class="proj-body">
+              <h3>Edições de Reels Comerciais</h3>
+              <p class="mono">Ver projeto no Behance ↗</p>
+            </div>
+          </a>
+        </div>
+        <div class="proj-card">
+          <a href="https://www.behance.net/gallery/193153955/EDUTFPR-Trabalhos-Desenvolvidos" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <div class="proj-thumb" style="background: linear-gradient(135deg, #0FA36B, #16140F);">
+              <span class="corner tl"></span><span class="corner br"></span>
+              <span class="tag">Redes sociais</span>
+            </div>
+            <div class="proj-body">
+              <h3>EDUTFPR — Trabalhos Desenvolvidos</h3>
+              <p class="mono">Ver projeto no Behance ↗</p>
+            </div>
+          </a>
+        </div>
+        <div class="proj-card">
+          <a href="https://www.behance.net/gallery/127612725/Overlay-para-Twitchtvkeevroger" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <div class="proj-thumb" style="background: linear-gradient(135deg, #F4C90C, #16140F);">
+              <span class="corner tl"></span><span class="corner br"></span>
+              <span class="tag">Identidade para streaming</span>
+            </div>
+            <div class="proj-body">
+              <h3>Overlay para Twitch.tv/keevroger</h3>
+              <p class="mono">Ver projeto no Behance ↗</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <p style="margin-top: 20px;"><a href="https://www.behance.net/willianrogersantos" target="_blank" rel="noopener" class="mono">Ver perfil completo no Behance ↗</a></p>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="mono">Experiência</p>
+        <h2>Trajetória</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-row">
+          <p class="code">24 · 04 →</p>
+          <div>
+            <h3>UNIDOMBOSCO</h3>
+            <p class="role-line">Assistente de áudio e vídeo — CLT · jun/2024 – abr/2026</p>
+            <p>Apoio em captação e edição de áudio e vídeo, incluindo cobertura de eventos e entrevistas.</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <p class="code">EDU · TFPR</p>
+          <div>
+            <h3>EDUTFPR</h3>
+            <p class="role-line">Estágio em design</p>
+            <p>Produção de peças gráficas e apoio a projetos de comunicação visual institucional.</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <p class="code">17 · —</p>
+          <div>
+            <h3>Landfor Design / Olimpo</h3>
+            <p class="role-line">Estágio em design</p>
+            <p>Primeiras experiências profissionais em branding e produção gráfica.</p>
+          </div>
+        </div>
+        <div class="tl-row">
+          <p class="code">17 · UTFPR</p>
+          <div>
+            <h3>UTFPR</h3>
+            <p class="role-line">Tecnologia em Design Gráfico</p>
+            <p>Formação com foco em design gráfico, base para toda a atuação em branding e audiovisual.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap contato">
+      <div>
+        <p class="mono" style="margin-bottom: 14px;">Contato</p>
+        <h2>Vamos conversar sobre o seu próximo projeto</h2>
+        <p class="lede">Aberto a vagas e projetos freelance em design gráfico, edição audiovisual e redes sociais em São Paulo e remoto.</p>
+      </div>
+      <ul class="contact-list">
+        <li><span class="k">E-mail</span><a href="mailto:willianrogersantos@gmail.com">willianrogersantos@gmail.com</a></li>
+        <li><span class="k">Behance</span><a href="https://www.behance.net/willianrogersantos" target="_blank" rel="noopener">behance.net/willianrogersantos</a></li>
+        <li><span class="k">LinkedIn</span><a href="https://www.linkedin.com/profile-thirdparty-redirect/AgEaC7NRV_2YpAAAAZyun73W3YE1L4G9k6NRILRripH3zIuuhDAU-0cNqaUTqV9bbRMrW5CzlEk1FA4COVSgEg4JaX06f8vOKXMNTAqQ5fmuWFVgjuxjI0yUMIkcZZc" target="_blank" rel="noopener">Ver LinkedIn</a></li>
+        <li><span class="k">WhatsApp</span><a href="https://wa.me/5511940776302" target="_blank" rel="noopener">(11) 9 4077-6302</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<div class="seigaiha" aria-hidden="true"></div>
+<footer>
+  <span class="mono">© 2026 Willian Roger Santos</span>
+  <span class="mono">São Paulo, Brasil</span>
+</footer>
+
+</body>
+</html>
